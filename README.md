@@ -18,7 +18,8 @@ The template can be configured using the following options:
 - **Title:** The application title. The default title is the web map name. 
 - **Subtitle** Text appearing below the title used to further describe the application. The default subtitle is the web map summary. 
 - **Filter Text:** Prompt users to explore the data by displaying additional values to choose as the filter text. 
-
+- **Filter Dropdown:** If the map contains more than one filter display filters in a dropdown list. When set to false all filters will display in the filter panel. 
+- **Display Zoom:** Set to true to display a button that will zoom to the filtered extent. Only applicable for hosted feature services.
 #Instructions
 
 1. Download and unzip the .zip file or clone the repo. 
