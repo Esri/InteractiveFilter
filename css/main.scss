@@ -40,8 +40,8 @@ html,body {
 #search{
     position:absolute;
     top:0;
-    padding:2px 4px;
-    right:8px;
+    right:0;
+    width:333px;
 }
 
 .filter-content{
@@ -54,10 +54,24 @@ html,body {
      display:block;
     }
 }
-/* Esri Jvascript API*/
+/* Esri Javascript API*/
 .esriPopup .pointer.bottom , .esriPopup .pointer.bottomLeft, .esriPopup .pointer.bottomRight{
     background: #f7f7f7 !important;
 }
+.esriPopup.light .actionsPane .action.zoomTo {
+  background-position: 0 -224px; }
+
+.esriPopup .actionsPane .action {
+  margin-right: 10px; }
+
+.esriPopup.light .actionsPane .action {
+  position: absolute;
+  cursor: pointer;
+  background-image: url("http://js.arcgis.com/3.12/esri/css/calcite/images/popup-sprite.png");
+  width: 12px;
+  height: 12px;
+  text-indent: -9999px; }
+
 #locateDiv{
     position: absolute;
     top:55px;
@@ -87,40 +101,42 @@ html,body {
 
 @font-face {
   font-family: 'simple';
-  src: url('../font/simple.eot?14672126');
-  src: url('../font/simple.eot?14672126#iefix') format('embedded-opentype'),
-       url('../font/simple.woff?14672126') format('woff'),
-       url('../font/simple.ttf?14672126') format('truetype'),
-       url('../font/simple.svg?14672126#simple') format('svg');
+  src: url('../font/simple.eot?71494750');
+  src: url('../font/simple.eot?71494750#iefix') format('embedded-opentype'),
+       url('../font/simple.woff?71494750') format('woff'),
+       url('../font/simple.ttf?71494750') format('truetype'),
+       url('../font/simple.svg?71494750#simple') format('svg');
   font-weight: normal;
   font-style: normal;
 }
- 
+
  [class^="icon-"]:before, [class*=" icon-"]:before {
   font-family: "simple";
   font-style: normal;
   font-weight: normal;
   speak: none;
- 
+
   display: inline-block;
   text-decoration: inherit;
   width: 1em;
   margin-right: .2em;
   text-align: center;
   /* opacity: .8; */
- 
+
   /* For safety - reset parent styles, that can break glyph codes*/
   font-variant: normal;
   text-transform: none;
-     
+
   /* fix buttons height, for twitter bootstrap */
   line-height: 1em;
- 
+
   /* Animation center compensation - margins should be symmetric */
   /* remove if not needed */
   margin-left: .2em;
- 
 
 }
- 
-.icon-menu:before { content: '\e801'; } /* '' */
+
+.icon-search:before { content: '\e800'; } /* '' */
+.icon-cancel:before { content: '\e801'; } /* '' */
+.icon-menu:before { content: '\e802'; } /* '' */
+.icon-buffer:before { content: '\e809'; } /* '' */
