@@ -4,7 +4,7 @@ define([], function() {
     //and url parameters.
     var defaults = {
         "appid": "",
-        "webmap": "d7b2c06ea5fc49dd8177480a8edacff6",
+        "webmap": "06a4bd5fa1e34ce28f4fb281abb53f38",
         "oauthappid": null, //"AFTKRmv16wj14N3z",
         //Group templates must support a group url parameter. This will contain the id of the group.
         //group: "",
@@ -28,6 +28,10 @@ define([], function() {
         "home": true,
         //Add the geocoder search box to the title area .
         "search": true,
+        // Add a legend to the upper right corner of the map 
+        "legend": false,
+        // When legendOpen is true the legend displays toggled open at startup
+        "legendOpen": false,
         "locationSearch": true,
         //When searchExtent is true the locator will prioritize results within the current map extent.
         "searchExtent": false,

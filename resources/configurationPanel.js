@@ -1,8 +1,11 @@
 {
    "configurationSettings":[
       {
-         "category":"Map Settings",
+         "category":"App Settings",
          "fields":[
+            {
+               "type": "appproxies"
+            },
             {
                "type":"webmap",
                "label":"Select a map"
@@ -103,52 +106,31 @@
                "type":"boolean",
                "fieldName":"locate",
                "label":"Location button"
+            },{
+               "type":"boolean",
+               "fieldName": "legend",
+               "label": "Legend"
+            },{
+               "type": "boolean",
+               "fieldName": "legendOpen",
+               "label":"Open legend on load"
             }
          ]
       },{
          "category": "Search Settings",
          "fields": [
             {
-               "type": "paragraph",
-               "value": "Enable/disable the search tool and optionally select layers (and fields) to add to the search tool."
+               "type":"paragraph",
+               "value": "Enable search to allow users to find a location or data in the map. Configure the search settings to refine the experience in your app by setting the default search resource, placeholder text, etc."
             },
             {  
-               "label":"Select search layers and fields",
-               "fieldName":"searchLayers",
-               "type":"multilayerandfieldselector",
-               "tooltip":"Select layer and fields to search",
-               "layerOptions":{  
-                  "supportedTypes":[  
-                     "FeatureLayer"
-                  ],
-                  "geometryTypes":[  
-                     "esriGeometryPoint",
-                     "esriGeometryLine",
-                     "esriGeometryPolyline",
-                     "esriGeometryPolygon"
-                  ]
-               },
-               "fieldOptions":{  
-                  "supportedTypes":[  
-                     "esriFieldTypeString"
-                  ]
-               }
-            },{  
                "type":"boolean",
                "fieldName":"search",
-               "label":"Address Finder"
-            },
-            {  
-               "type":"boolean",
-               "fieldName":"searchExtent",
-               "label":"Prioritize search results in current extent."
+               "label":"Enable search tool"
             },{
-               "type":"paragraph",
-               "value": "When Location Search is true the search widget will allow users to search for addresses and locations using one or more locators and also search the layers and fields specified in the Search Layers configuration option. Unchecking the Location Search option will remove the locator search and only configured search layers will be displayed."
-            },{
-               "type": "boolean",
-               "fieldName": "locationSearch",
-               "label": "Location Search"
+               "type": "search",
+               "fieldName": "searchConfig",
+               "label": "Configure search tool"
             }
          ]
       }
@@ -157,14 +139,14 @@
       "home":true,
       "locate":true,
       "search":true,
-      "locationSearch": true,
-      "searchExtent": false,
       "color":"#fff",
       "theme":"#666",
       "filterDropdown":false,
       "filterOnLoad": true,
       "displayZoom": false,
-      "displayClear": false
+      "displayClear": false,
+      "legend": false,
+      "legendOpen": false
 
    }
 }

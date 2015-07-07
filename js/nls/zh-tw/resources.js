@@ -1,21 +1,21 @@
 ﻿define(
    ({
   	map: {
-  		error: "无法创建地图"
+  		error: "無法建立地圖"
   	},
     viewer: {
-      content_title: "过滤器",
-      button_text: "应用",
-      filterInstructions: "通过指定值来过滤图层。",
-      filterOr: "以下任意表达式必须为 true。",
-      filterAnd: "以下表达式必须全部为 true。",
+      content_title: "篩選",
+      button_text: "套用",
+      filterInstructions: "透過指定值篩選圖層。",
+      filterOr: "以下任意表達式必須為 true。",
+      filterAnd: "以下表達式必須全部為 true。",
       filterNo:  "Web map does not contain any interactive filters. View the <a target='_blank' href='http://doc.arcgis.com/en/arcgis-online/use-maps/apply-filters.htm'>Apply Filter</a> help topic for details on how to create a filter in your web map.",
       errors:{
-        message: "创建过滤器应用时出现问题"
+        message: "建立篩選應用程式時出現問題"
       }
     },
     legend:{
-      title: "图例"
+      title: "圖例"
     }
   })
 );
