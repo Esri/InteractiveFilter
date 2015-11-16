@@ -30,7 +30,7 @@
 }
 .esriRTL .top-bar-title{
   float:right;
-  padding-right:10px;
+  padding-right:45px;
 }
 .hamburger-button {
   position:absolute;
@@ -43,8 +43,9 @@
   @include opacity(0.3);
 }
 .esriRTL .hamburger-button {
-  float:right;
-  right:5px;
+  position: absolute;
+  top:9px;
+  right:2px;
 }
 .dijitContentPane{
   overflow:hidden;

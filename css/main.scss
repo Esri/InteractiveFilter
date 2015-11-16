@@ -120,6 +120,9 @@ html,body {
     width:auto;
     padding-right:2px;
 }
+.esriRTL #search{
+  float:left;
+}
 #search .searchInput{
   width:120px;
     @include respond-to(450){
@@ -157,7 +160,7 @@ html,body {
 .esriPopup.light .actionsPane .action {
   position: absolute;
   cursor: pointer;
-  background-image: url("http://js.arcgis.com/3.12/esri/css/calcite/images/popup-sprite.png");
+  background-image: url("../images/popup-sprite.png");
   width: 12px;
   height: 12px;
   bottom:4px;
