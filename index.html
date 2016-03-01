@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <meta charset="utf-8">
     <!--Use protocol relative urls that way if the browser is viewing the page via HTTPS the js/css file will be requested using the HTTPS protocol-->
-    <link rel="stylesheet" href="http://js.arcgis.com/3.15/dijit/themes/claro/claro.css">
-    <link rel="stylesheet"  href="//js.arcgis.com/3.15/esri/css/esri.css">
+    <link rel="stylesheet" href="http://js.arcgis.com/3.16/dijit/themes/claro/claro.css">
+    <link rel="stylesheet"  href="//js.arcgis.com/3.16/esri/css/esri.css">
     <!--Load any application specific styles-->
     <link rel="stylesheet" href="css/main.css">
     <!--[if (lt IE 9)]>
@@ -19,17 +19,18 @@
   <div class="loading-indicator">
     <div class="loading-message" id="loading_message"></div>
   </div>
-   <!--The ArcGIS API for JavaScript provides bidirectional support.  When viewing the application in an right to left (rtl) language like Hebrew and Arabic the map needs to remain in left-to-right (ltr) mode. Specify this by setting the dir attribute on the div to ltr. --> 
+   <!--The ArcGIS API for JavaScript provides bidirectional support.  When viewing the application in an right to left (rtl) language like Hebrew and Arabic the map needs to remain in left-to-right (ltr) mode. Specify this by setting the dir attribute on the div to ltr. -->
        <div id="border_container" class="border-container-outer">
         <div id="cp_left" class="content-pane-left">
         </div>
         <div id="cp_center" class="content-pane-center">
             <div class="top-bar bg">
-                <i id="toggle_button" class="hamburger-button icon-menu fc"></i> 
+                <i id="toggle_button" class="hamburger-button icon-menu fc"></i>
                 <div id="search" class="geocoder"></div>
                 <div id="title" class="top-bar-title"></div>
             </div>
          <div id="mapDiv" dir="ltr">
+             <img id="filterLoad" class="map-loader-img" src="images/ajax-loader.gif"/>
              <div id="legendContainer" class="legend hide">
                 <div id="submenu" title="Show Legend" class="icon-LayerList mini-submenu hide">
                 </div>
@@ -39,15 +40,15 @@
                 </div>
                 <div id="legend" class="legend legend-content hide">
                   <div id="legendDiv"  class="legend-item"></div>
-                </div>        
-            </div>         
+                </div>
+            </div>
          </div>
         </div>
     </div>
     <script type="text/javascript">
         var package_path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
         var dojoConfig = {
-            // The locationPath logic below may look confusing but all its doing is 
+            // The locationPath logic below may look confusing but all its doing is
             // enabling us to load the api from a CDN and load local modules from the correct location.
             packages: [{
                 name: "application",
@@ -62,7 +63,7 @@
           dojoConfig.locale = RegExp.$1;
       }
     </script>
-    <script type="text/javascript" src="//js.arcgis.com/3.15/"></script>
+    <script type="text/javascript" src="//js.arcgis.com/3.16/"></script>
     <script type="text/javascript">
         require([
                 "config/templateConfig",
@@ -88,6 +89,6 @@
             myApp.reportError(error);
           });
         });
-    </script>   
+    </script>
 </body>
 </html>
