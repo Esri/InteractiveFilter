@@ -1,5 +1,5 @@
-define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base/kernel", "dojo/number", "dojo/dom", "dojo/query", "dojo/dom-construct", "dojo/dom-style", "dojo/dom-class", "dojo/Deferred", "dojo/promise/all", "dojo/ready", "dojo/request/script", "dojo/Stateful", "dojo/string", "dojo/Evented", "dojo/i18n!application/nls/resources", "dojo/on", "esri/request", "esri/tasks/query", "esri/tasks/QueryTask", "dojo/domReady!"], function(
-  declare, array, lang, dojo, number, dom, dojoQuery, domConstruct, domStyle, domClass, Deferred, all, ready, script, Stateful, string, Evented, i18n, on, esriRequest, Query, QueryTask) {
+define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base/kernel", "dojo/number", "dojo/dom", "dojo/query", "dojo/dom-construct", "dojo/dom-style", "dojo/dom-class", "dojo/Deferred", "dojo/promise/all", "dojo/ready", "dojo/request/script", "dojo/Stateful", "dojo/string", "dojo/Evented", "dojo/i18n!application/nls/resources", "dojo/on", "esri/request", "esri/tasks/query", "esri/tasks/QueryTask", "dijit/form/FilteringSelect", "dojo/store/Memory", "dijit/registry", "dojo/domReady!"], function(
+  declare, array, lang, dojo, number, dom, dojoQuery, domConstruct, domStyle, domClass, Deferred, all, ready, script, Stateful, string, Evented, i18n, on, esriRequest, Query, QueryTask, FilteringSelect, Memory, registry) {
   return declare("application.Filter", [Stateful, Evented], {
     options: {
       map: null,
@@ -251,14 +251,14 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
         }
       });
       if (field && field.domain && field.domain.codedValues) {
-        paramInputs = this._createDropdownList(param, field.domain.codedValues);
+        paramInputs = this._createDropdownList(param, field.domain.codedValues, false);
         deferred.resolve(paramInputs);
       } else if (field && field.type === "esriFieldTypeInteger") { //the pattern forces the numeric keyboard on iOS. The numeric type works on webkit browsers only
         paramInputs = lang.replace("<input class='param_inputs'  type='number'  id='{inputId}' pattern='[0-9]*'  value='{defaultValue}' />", param);
         deferred.resolve(paramInputs);
       } else { //string
         var capabilities = filterLayer.advancedQueryCapabilities;
-        if (capabilities.supportsDistinct && this.uniqueVals) {
+        if (capabilities && capabilities.supportsDistinct && this.uniqueVals) {
           var distinctQuery = new Query();
           distinctQuery.where = "1=1";
           distinctQuery.orderByFields = [field.name];
@@ -275,8 +275,8 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
               };
             });
 
-            var container = this._createDropdownList(param, values);
-            deferred.resolve(container);
+            paramInputs = this._createDropdownList(param, values, true);
+            deferred.resolve(paramInputs);
           }), function(error) {
             deferred.resolve(error);
           });
@@ -288,14 +288,42 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
       }
       return deferred.promise;
     },
-    _createDropdownList: function(param, values) {
+     _createDropdownList: function(param, values, isString) {
       var container = domConstruct.create("div", {
         className: "styled-select small"
       });
+      // Modify select to utilize Dojo - Dijit FilteringSelect Widget
       var select = domConstruct.create("select", {
+        dojoType: "dijit/form/FilteringSelect",
         id: param.inputId
       }, container);
 
+      // Workaround for setting the string type values to a filtering select
+        if(isString){
+          setTimeout(lang.hitch(this, function(){
+            var sel = dom.byId(param.inputId);
+            var vals = [];
+            array.forEach(values, function(val, index) {
+              vals.push({
+                value: val.code,
+                label: val.name,
+                selected: (val.name === param.defaultValue) ? true : false
+              })
+            });
+
+            var dStore = new Memory({
+                             idProperty: "label",
+                             data: vals
+                        });
+
+            var select = new FilteringSelect({
+              id: param.inputId,
+              strore: dStore
+            }, sel).startup();
+          }), 500);
+        }
+      // End
+      
       array.forEach(values, function(val, index) {
         domConstruct.create("option", {
           value: val.code,
