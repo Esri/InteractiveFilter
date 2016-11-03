@@ -101,8 +101,9 @@ legend {
 
 .row input {
   width: 250px;
-  margin-top: .5em;
-  margin-bottom: .5em; }
+  /*margin-top: .5em;
+  margin-bottom: .5em; */
+  }
 
 @media only screen and (min-width: 760px) {
   .row input {
