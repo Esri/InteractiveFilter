@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <meta charset="utf-8">
     <!--Use protocol relative urls that way if the browser is viewing the page via HTTPS the js/css file will be requested using the HTTPS protocol-->
-    <link rel="stylesheet" href="//js.arcgis.com/3.18/dijit/themes/claro/claro.css">
-    <link rel="stylesheet"  href="//js.arcgis.com/3.18/esri/css/esri.css">
+    <link rel="stylesheet" href="//js.arcgis.com/3.19/dijit/themes/claro/claro.css">
+    <link rel="stylesheet"  href="//js.arcgis.com/3.19/esri/css/esri.css">
     <!--Load any application specific styles-->
     <link rel="stylesheet" href="css/main.css">
     <!--[if (lt IE 9)]>
@@ -48,6 +48,7 @@
     <script type="text/javascript">
         var package_path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
         var dojoConfig = {
+            parseOnLoad: true,
             // The locationPath logic below may look confusing but all its doing is
             // enabling us to load the api from a CDN and load local modules from the correct location.
             packages: [{
@@ -63,7 +64,7 @@
           dojoConfig.locale = RegExp.$1;
       }
     </script>
-    <script type="text/javascript" src="//js.arcgis.com/3.18/"></script>
+    <script type="text/javascript" src="//js.arcgis.com/3.19/"></script>
     <script type="text/javascript">
         require([
                 "config/templateConfig",

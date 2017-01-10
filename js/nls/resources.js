@@ -1,34 +1,38 @@
 define({
   root: ({
-  	map: {
-  		error: "Unable to create map"
-  	},
+    map: {
+      error: "Unable to create map"
+    },
     viewer: {
       content_title: "Filter",
       button_text: "Apply",
       filterInstructions: "Filter the layer by specifying values.",
       filterOr: "Any of the following expressions must be true.",
       filterAnd: "All of the following expressions must be true.",
-      filterNo:  "Web map does not contain any interactive filters. View the ${link} help topic for details on how to create a filter in your web map.",
+      filterNo: "Web map does not contain any interactive filters. View the ${link} help topic for details on how to create a filter in your web map.",
       filterLink: "http://doc.arcgis.com/en/arcgis-online/use-maps/apply-filters.htm",
-      errors:{
+      errors: {
         message: "Problem creating the filters application"
       }
     },
-    legend:{
+    legend: {
       title: "Legend"
     }
   }),
   "ar": 1,
+  "bs": 1,
   "cs": 1,
   "da": 1,
   "de": 1,
+  "el": 1,
   "es": 1,
   "et": 1,
   "fi": 1,
   "fr": 1,
   "he": 1,
-  "hr": 1, 
+  "hi": 1,
+  "hr": 1,
+  "id": 1,
   "it": 1,
   "ja": 1,
   "ko": 1,
