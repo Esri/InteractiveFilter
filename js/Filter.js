@@ -1,5 +1,5 @@
-define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base/kernel", "dojo/number", "dojo/dom", "dojo/query", "dojo/dom-construct", "dojo/dom-style", "dojo/dom-class", "dojo/Deferred", "dojo/promise/all", "dojo/ready", "dojo/request/script", "dojo/Stateful", "dojo/string", "dojo/Evented", "dojo/i18n!application/nls/resources", "dojo/on", "esri/request", "esri/tasks/query", "esri/tasks/QueryTask", "dijit/form/FilteringSelect", "dojo/store/Memory", "dijit/registry", "dojo/domReady!"], function(
-  declare, array, lang, dojo, number, dom, dojoQuery, domConstruct, domStyle, domClass, Deferred, all, ready, script, Stateful, string, Evented, i18n, on, esriRequest, Query, QueryTask, FilteringSelect, Memory, registry) {
+define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base/kernel", "dojo/number", "dojo/dom", "dijit/registry", "dojo/query", "dojo/dom-construct", "dojo/dom-style", "dojo/dom-class", "dojo/Deferred", "dojo/promise/all", "dojo/ready", "dojo/request/script", "dojo/Stateful", "dojo/string", "dojo/Evented", "dojo/i18n!application/nls/resources", "dojo/on", "esri/request", "esri/tasks/query", "esri/tasks/QueryTask", "dijit/form/FilteringSelect", "dojo/store/Memory", "dojo/domReady!"], function(
+  declare, array, lang, dojo, number, dom, registry, dojoQuery, domConstruct, domStyle, domClass, Deferred, all, ready, script, Stateful, string, Evented, i18n, on, esriRequest, Query, QueryTask, FilteringSelect, Memory) {
   return declare("application.Filter", [Stateful, Evented], {
     options: {
       map: null,
@@ -25,8 +25,6 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
       // private vars
       this._deferreds = [];
       this._events = [];
-
-
       // map required
       if (!this.map) {
         console.log("Filter::Reference to esri.Map object required");
@@ -124,11 +122,17 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
       array.forEach(layer.definitionEditor.inputs, lang.hitch(this, function(input) {
 
         array.forEach(input.parameters, lang.hitch(this, function(param) {
-
           var widget_id = layer.id + "." + param.parameterId + ".value";
-          var widget = dom.byId(widget_id);
-          var value = widget.value;
-
+          var widget = registry.byId(widget_id);
+          if (widget === undefined) {
+            widget = dom.byId(widget_id);
+          }
+          var value;
+          if (widget && widget.item) {
+            value = widget.item.value;
+          } else {
+            value = widget.value;
+          }
           //is it a number
           var defaultValue = isNaN(param.defaultValue) ? param.defaultValue : number.parse(param.defaultValue);
           if (isNaN(value)) {
@@ -143,6 +147,7 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
         }));
       }));
       var defExp = lang.replace(layer.definitionEditor.parameterizedExpression, values);
+      console.log("exp", defExp);
       this._applyDefinitionExpression(layer, defExp);
     },
     _applyDefinitionExpression: function(layer, defExp) {
@@ -161,9 +166,12 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
           layer.layerObject.setDefinitionExpression(defExp);
         }
       } else if (layer.layerId) { //dynamic layer
-        var layerDef = [];
-        layerDef[layer.id] = defExp;
         var mapLayer = this.map.getLayer(layer.layerId);
+
+        var layerDef = mapLayer.layerDefinitions || [];
+        layerDef[layer.id];
+        layerDef[layer.id] = defExp;
+
         mapLayer.setLayerDefinitions(layerDef);
         this._stopIndicator();
       }
@@ -192,7 +200,6 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
           dynLayer.setVisibleLayers([layer.id]);
         }
       }
-
     },
     _addFilter: function(layer) {
       var deferred = new Deferred();
@@ -251,7 +258,7 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
         }
       });
       if (field && field.domain && field.domain.codedValues) {
-        paramInputs = this._createDropdownList(param, field.domain.codedValues, false);
+        paramInputs = this._createDropdownList(param, field.domain.codedValues);
         deferred.resolve(paramInputs);
       } else if (field && field.type === "esriFieldTypeInteger") { //the pattern forces the numeric keyboard on iOS. The numeric type works on webkit browsers only
         paramInputs = lang.replace("<input class='param_inputs'  type='number'  id='{inputId}' pattern='[0-9]*'  value='{defaultValue}' />", param);
@@ -275,8 +282,8 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
               };
             });
 
-            paramInputs = this._createDropdownList(param, values, true);
-            deferred.resolve(paramInputs);
+            var container = this._createDropdownList(param, values);
+            deferred.resolve(container);
           }), function(error) {
             deferred.resolve(error);
           });
@@ -288,51 +295,36 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
       }
       return deferred.promise;
     },
-     _createDropdownList: function(param, values, isString) {
+    _createDropdownList: function(param, values) {
       var container = domConstruct.create("div", {
         className: "styled-select small"
       });
-      // Modify select to utilize Dojo - Dijit FilteringSelect Widget
-      var select = domConstruct.create("select", {
-        dojoType: "dijit/form/FilteringSelect",
-        id: param.inputId
+      var defaultValue = null;
+      var selectValues = [];
+      array.forEach(values, function(val, index) {
+
+        if (val.code === param.defaultValue) {
+          defaultValue = val.name;
+        }
+        if (val.name !== null || val.code !== null) {
+          selectValues.push({
+            name: val.name,
+            value: val.code,
+            id: val.code
+          });
+        }
+      });
+      var dataStore = new Memory({
+        data: selectValues
+      });
+      var select = new FilteringSelect({
+        id: param.inputId,
+        store: dataStore,
+        value: defaultValue
       }, container);
 
-      // Workaround for setting the string type values to a filtering select
-        if(isString){
-          setTimeout(lang.hitch(this, function(){
-            var sel = dom.byId(param.inputId);
-            var vals = [];
-            array.forEach(values, function(val, index) {
-              vals.push({
-                value: val.code,
-                label: val.name,
-                selected: (val.name === param.defaultValue) ? true : false
-              })
-            });
-
-            var dStore = new Memory({
-                             idProperty: "label",
-                             data: vals
-                        });
-
-            var select = new FilteringSelect({
-              id: param.inputId,
-              strore: dStore
-            }, sel).startup();
-          }), 500);
-        }
-      // End
-      
-      array.forEach(values, function(val, index) {
-        domConstruct.create("option", {
-          value: val.code,
-          innerHTML: val.name,
-          selected: (val.name === param.defaultValue) ? true : false
-        }, select);
-      });
-      var node = container.outerHTML ? container.outerHTML : container.innerHTML;
-      return node;
+      select.startup();
+      return select.domNode;
     },
     _getLayerFields: function(layer) {
       var deferred = new Deferred();
@@ -354,7 +346,6 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
       return deferred.promise;
     },
     _buildFilterDialog: function(layers) {
-
       //If only one layer has a filter then display it.
       //If multiple layers have a filter create a dropdown then show/hide the filters.
       // Build the filter dialog including explanatory text and add a submit button for each filter group.
@@ -438,10 +429,7 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
             value: this.button_text || i18n.viewer.button_text
           }, filterGroup, "last");
 
-
-
           if (this.displayClear) {
-
             var clear = domConstruct.create("span", {
               className: "cancelButton icon-cancel",
               id: layer.id + "_clear",
@@ -457,9 +445,7 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
                 this.map.infoWindow.hide();
               }
             }));
-
           }
-
           //only valid for hosted feature layers.
           if (this.displayZoom) {
             if (layer.layerObject && layer.layerObject.type && layer.layerObject.type === "Feature Layer" && layer.layerObject.url && this._isHosted(layer.layerObject.url)) {
@@ -473,22 +459,17 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
               }));
             }
           }
-
-
           //clear the default filter if config option is set
           if (this.filterOnLoad === false) {
             this._applyDefinitionExpression(layer, null);
 
           }
-
           on(b, "click", lang.hitch(this, function() {
             this._startIndicator();
             this._createDefinitionExpression(layer);
 
           }));
         }));
-
-
       }));
 
       return filterContainer;
@@ -517,11 +498,12 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
           if (result.extent) {
             this.map.setExtent(result.extent, true);
             this._stopIndicator();
+          } else if (result.count === 0) {
+            this._stopIndicator();
           }
         }), function(error) {
           this._stopIndicator();
         });
-
       }
     }
   });
