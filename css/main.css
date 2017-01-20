@@ -53,10 +53,12 @@
 legend {
   background: none repeat scroll 0 0 transparent;
   color: #003366;
-  font-size: 1.3 em;
+  font-size: 1em;
   font-weight: bold;
   margin: .5em 0;
-  padding: 0 0.5 em; }
+  width:100%;
+  word-wrap: break-word;
+}
 
 .instructions {
   margin: .5em 0;
@@ -101,9 +103,7 @@ legend {
 
 .row input {
   width: 250px;
-  /*margin-top: .5em;
-  margin-bottom: .5em; */
-  }
+ }
 
 @media only screen and (min-width: 760px) {
   .row input {

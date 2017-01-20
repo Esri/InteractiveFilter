@@ -26,13 +26,15 @@
                "type":"color",
                "fieldName":"theme",
                "tooltip":"Color theme to use",
-               "label":"Color Theme:"
+               "label":"Color Theme:",
+               "sharedThemeProperty": "header.background"
             },
             {
                "type":"color",
                "fieldName":"color",
                "tooltip":"Text color",
-               "label":"Text Color:"
+               "label":"Text Color:",
+               "sharedThemeProperty": "header.text"
             },{
               "type": "paragraph",
               "value": "Use the Custom css option to paste css that overwrites rules in the app."
