@@ -1,4 +1,4 @@
-define([], function() {
+define([], function () {
   //Default configuration settings for the application. This is where you'll define things like a bing maps key,
   //default web map, default app color theme and more. These values can be overwritten by template configuration settings
   //and url parameters.

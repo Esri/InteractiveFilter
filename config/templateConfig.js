@@ -46,5 +46,5 @@ define({
     "theme", "center", "basemap", "extent", "level", "toggleFilterVisibility", "sharedTheme", "sharedThemeItem", "uniqueVals", "sharinghost"
   ],
   // For esri hosted environments only. Will automatically create a sharingurl and proxyurl for the application.
-  esriEnvironment: false
+  esriEnvironment: true
 });
