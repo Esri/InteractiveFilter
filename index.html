@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <meta charset="utf-8">
     <!--Use protocol relative urls that way if the browser is viewing the page via HTTPS the js/css file will be requested using the HTTPS protocol-->
-    <link rel="stylesheet" href="//js.arcgis.com/3.19/dijit/themes/claro/claro.css">
-    <link rel="stylesheet" href="//js.arcgis.com/3.19/esri/css/esri.css">
+    <link rel="stylesheet" href="//js.arcgis.com/3.20/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" href="//js.arcgis.com/3.20/esri/css/esri.css">
     <!--Load any application specific styles-->
     <link rel="stylesheet" href="css/main.css">
     <!--[if (lt IE 9)]>
@@ -66,8 +66,8 @@
             dojoConfig.locale = RegExp.$1;
         }
     </script>
-<script type="text/javascript" src="//js.arcgis.com/3.19/"></script>
-<script type="text/javascript">
+    <script type="text/javascript" src="//js.arcgis.com/3.20/"></script>
+    <script type="text/javascript">
         require([
             "config/templateConfig",
             "application/template",
@@ -92,7 +92,8 @@
                     myApp.reportError(error);
                 });
             });
-</script>
+
+    </script>
 </body>
 
 </html>
