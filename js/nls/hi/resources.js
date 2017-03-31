@@ -8,7 +8,7 @@ define({
     "filterInstructions": "संख्या निर्दिष्ट करके लेयर फिल्टर करें।",
     "filterOr": "निम्न समीकरण में से कोई भी सही होना चाहिए।",
     "filterAnd": "निम्न सभी समीकरण सही होने चाहिए।",
-    "filterNo": "Web map does not contain any interactive filters. View the ${link} help topic for details on how to create a filter in your web map.",
+    "filterNo": "इस वेब मानचित्र में कोई भी इंटरैक्टिव फिल्टर शामिल नहीं हैं। इंटरैक्टिव फिल्टर भावों को सक्षम करने के लिए, वेब मानचित्र फिल्टर संवाद में 'मानों के लिए पूछें ('Ask for values')' में सही का निशान लगाएँ। <br><br> अपने वेब मानचित्र में एक इंटरैक्टिव फिल्टर भाव कैसे बनाएँ इस पर अधिक विवरण के लिए अधिक सहायता हेतु ${link} सहायता विषय देखें।",
     "filterLink": "http://doc.arcgis.com/en/arcgis-online/use-maps/apply-filters.htm",
     "errors": {
       "message": "फिल्टर ऐप्लिकेशन बनाने में समस्या"

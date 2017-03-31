@@ -8,7 +8,7 @@ define({
     "filterInstructions": "Filter lapisan dengan menentukan nilainya.",
     "filterOr": "Di antara ekspresi berikut harus ada yang benar.",
     "filterAnd": "Semua ekspresi berikut harus benar.",
-    "filterNo": "Web map does not contain any interactive filters. View the ${link} help topic for details on how to create a filter in your web map.",
+    "filterNo": "Web map ini tidak berisi filter interaktif apa pun. Untuk mengaktifkan ekspresi filter interaktif, centang 'Minta nilai' di dialog filter web map. <br><br> Untuk bantuan selengkapnya, lihat topik bantuan ${link} untuk rincian mengenai cara membuat ekspresi filter interaktif di web map Anda.",
     "filterLink": "http://doc.arcgis.com/en/arcgis-online/use-maps/apply-filters.htm",
     "errors": {
       "message": "Ada masalah saat membuat aplikasi filter"

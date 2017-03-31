@@ -9,7 +9,7 @@ define({
       filterInstructions: "Filter the layer by specifying values.",
       filterOr: "Any of the following expressions must be true.",
       filterAnd: "All of the following expressions must be true.",
-      filterNo: "Web map does not contain any interactive filters. View the ${link} help topic for details on how to create a filter in your web map.",
+      filterNo: "This web map does not contain any interactive filters. To enable interactive filter expressions, check 'Ask for values' in the web map filter dialog. <br><br> For more help view the ${link} help topic for details on how to create an interactive filter expression in your web map.",
       filterLink: "http://doc.arcgis.com/en/arcgis-online/use-maps/apply-filters.htm",
       errors: {
         message: "Problem creating the filters application"

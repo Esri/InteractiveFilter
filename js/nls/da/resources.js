@@ -8,7 +8,7 @@ define({
     "filterInstructions": "Filtrér laget ved at angive værdier.",
     "filterOr": "Ethvert af følgende udtryk skal være sande.",
     "filterAnd": "Alle de følgende udtryk skal være sande.",
-    "filterNo": "Web map does not contain any interactive filters. View the ${link} help topic for details on how to create a filter in your web map.",
+    "filterNo": "Dette webkort indeholder ikke nogen interaktive filtre. Hvis du vil aktivere interaktive filterudtryk, skal du markere feltet 'Spørg efter værdier' i webkortfilter-dialogboksen. <br><br> Yderligere hjælp finder du ved at se ${link} hjælp-emnet for oplysninger om, hvordan du opretter et interaktivt filterudtryk i dit webkort.",
     "filterLink": "http://doc.arcgis.com/en/arcgis-online/use-maps/apply-filters.htm",
     "errors": {
       "message": "Problem med at oprette filterapplikationen"

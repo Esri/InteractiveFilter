@@ -8,7 +8,7 @@ define({
     "filterInstructions": "Отфильтровать слой по указанным значениям.",
     "filterOr": "Любое из следующих выражений должно иметь значение true.",
     "filterAnd": "Все из следующих выражений должны иметь значение true.",
-    "filterNo": "Web map does not contain any interactive filters. View the ${link} help topic for details on how to create a filter in your web map.",
+    "filterNo": "Эта веб-карта не содержит интерактивных фильтров. Чтобы использовать выражения интерактивных фильтров, отметьте 'Запросить значения' в диалоговом окне фильтра веб-карты. <br><br> Дополнительные сведения находятся в разделе справки ${link}, где описано, как создать выражение интерактивного фильтра на веб-карте.",
     "filterLink": "http://doc.arcgis.com/en/arcgis-online/use-maps/apply-filters.htm",
     "errors": {
       "message": "Проблема с созданием фильтров приложения"

@@ -1,4 +1,4 @@
-define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base/kernel", "dojo/number", "dojo/dom", "dijit/registry", "dojo/query", "dojo/dom-construct", "dojo/dom-style", "dojo/dom-class", "dojo/Deferred", "dojo/promise/all", "dojo/ready", "dojo/request/script", "dojo/Stateful", "dojo/string", "dojo/Evented", "dojo/i18n!application/nls/resources", "dojo/on", "esri/request", "esri/tasks/query", "esri/tasks/QueryTask", "dijit/form/FilteringSelect", "dojo/store/Memory", "dojo/domReady!"], function(
+define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base/kernel", "dojo/number", "dojo/dom", "dijit/registry", "dojo/query", "dojo/dom-construct", "dojo/dom-style", "dojo/dom-class", "dojo/Deferred", "dojo/promise/all", "dojo/ready", "dojo/request/script", "dojo/Stateful", "dojo/string", "dojo/Evented", "dojo/i18n!application/nls/resources", "dojo/on", "esri/request", "esri/tasks/query", "esri/tasks/QueryTask", "dijit/form/FilteringSelect", "dojo/store/Memory", "dojo/domReady!"], function (
   declare, array, lang, dojo, number, dom, registry, dojoQuery, domConstruct, domStyle, domClass, Deferred, all, ready, script, Stateful, string, Evented, i18n, on, esriRequest, Query, QueryTask, FilteringSelect, Memory) {
   return declare("application.Filter", [Stateful, Evented], {
     options: {
@@ -14,7 +14,7 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
       filterInstructions: null,
       uniqueVals: false
     },
-    constructor: function(options) {
+    constructor: function (options) {
       // mixin options
       var defaults = lang.mixin({}, this.options, options);
       // properties
@@ -32,12 +32,12 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
       }
 
       // dom ready
-      ready(lang.hitch(this, function() {
+      ready(lang.hitch(this, function () {
         // query when map loads
         if (this.map.loaded) {
           this._init();
         } else {
-          var onLoad = on.once(this.map, "load", lang.hitch(this, function() {
+          var onLoad = on.once(this.map, "load", lang.hitch(this, function () {
             this._init();
           }));
           this._events.push(onLoad);
@@ -47,7 +47,7 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
         this.emit("load", {});
       }));
     },
-    destroy: function() {
+    destroy: function () {
       // remove events
       if (this._events && this._events.length) {
         for (var i = 0; i < this._events.length; i++) {
@@ -55,13 +55,13 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
         }
       }
     },
-    _init: function() {},
-    createFilterContent: function() {
+    _init: function () { },
+    createFilterContent: function () {
       var deferred = new Deferred();
       this._filterLayers();
-      all(this.filterLayers).then(lang.hitch(this, function(response) {
+      all(this.filterLayers).then(lang.hitch(this, function (response) {
         var layers = []; /*If there are interactive filters build the filter display*/
-        array.forEach(response, lang.hitch(this, function(r, index) {
+        array.forEach(response, lang.hitch(this, function (r, index) {
           layers.push(r);
         }));
         this.layers = layers;
@@ -81,14 +81,14 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
       return deferred.promise;
 
     },
-    _filterLayers: function() {
+    _filterLayers: function () {
       var filterLayers = [];
-      array.forEach(this.layers, lang.hitch(this, function(layer) {
+      array.forEach(this.layers, lang.hitch(this, function (layer) {
         if (layer.definitionEditor) {
           filterLayers.push(this._getLayerFields(layer));
         } else if (layer.layers) {
           //Check ArcGISDynamicMapService layers for filters
-          array.forEach(layer.layers, lang.hitch(this, function(sublayer) {
+          array.forEach(layer.layers, lang.hitch(this, function (sublayer) {
             if (sublayer.definitionEditor) {
               sublayer.title = layer.title;
               sublayer.layerId = layer.id;
@@ -109,19 +109,19 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
       this.filterLayers = filterLayers;
       return filterLayers;
     },
-    _stopIndicator: function(layer) {
+    _stopIndicator: function (layer) {
       domClass.remove("filterLoad", "filter-loading");
     },
-    _startIndicator: function() {
+    _startIndicator: function () {
       domClass.add("filterLoad", "filter-loading");
     },
-    _createDefinitionExpression: function(layer) {
+    _createDefinitionExpression: function (layer) {
       this._startIndicator();
       //get the input values to the filter - if not value is specified use the defaults
       var values = [];
-      array.forEach(layer.definitionEditor.inputs, lang.hitch(this, function(input) {
+      array.forEach(layer.definitionEditor.inputs, lang.hitch(this, function (input) {
 
-        array.forEach(input.parameters, lang.hitch(this, function(param) {
+        array.forEach(input.parameters, lang.hitch(this, function (param) {
           var widget_id = layer.id + "." + param.parameterId + ".value";
           var widget = registry.byId(widget_id);
           if (widget === undefined) {
@@ -147,10 +147,9 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
         }));
       }));
       var defExp = lang.replace(layer.definitionEditor.parameterizedExpression, values);
-      console.log("exp", defExp);
       this._applyDefinitionExpression(layer, defExp);
     },
-    _applyDefinitionExpression: function(layer, defExp) {
+    _applyDefinitionExpression: function (layer, defExp) {
       // if toggleFilterVisibility is true then hide all layers except currently visible layer.
       if (this.toggleFilterVisibility) {
         this._setFilterVisibility(layer);
@@ -160,7 +159,7 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
         layer.layerObject.setDefinitionExpression(defExp);
       } else if (layer.layerObject) { //Image Service, Stream layer or Feature Layer
         if (layer.definitionEditor || (layer.layerObject.type && layer.layerObject.type === "Feature Layer")) {
-          on.once(layer.layerObject, "update-end", lang.hitch(this, function() {
+          on.once(layer.layerObject, "update-end", lang.hitch(this, function () {
             this._stopIndicator();
           }));
           layer.layerObject.setDefinitionExpression(defExp);
@@ -176,9 +175,9 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
         this._stopIndicator();
       }
     },
-    _setFilterVisibility: function(visLayer) {
+    _setFilterVisibility: function (visLayer) {
       if (this.layers) {
-        array.forEach(this.layers, lang.hitch(this, function(layer) {
+        array.forEach(this.layers, lang.hitch(this, function (layer) {
           if (visLayer.id === layer.id) {
             this._setLayerVisibility(layer, true);
           } else {
@@ -187,7 +186,7 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
         }));
       }
     },
-    _setLayerVisibility: function(layer, vis) {
+    _setLayerVisibility: function (layer, vis) {
       if (layer && layer.layerType) {
         if (layer.layerType === "ArcGISFeatureLayer" && layer.layerObject) {
           layer.layerObject.setVisibility(vis);
@@ -201,57 +200,66 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
         }
       }
     },
-    _addFilter: function(layer) {
+    _addFilter: function (layer) {
       var deferred = new Deferred();
       var content = domConstruct.create("div");
-      array.forEach(layer.definitionEditor.inputs, lang.hitch(this, function(input) {
+      array.forEach(layer.definitionEditor.inputs, lang.hitch(this, function (input) {
         domConstruct.create("label", {
           innerHTML: input.prompt
         }, content); //add prompt text to panel
         var pcontent = domConstruct.create("div", {
           className: "row"
         }, content);
+
+        domConstruct.create("label", {
+          className: "hint",
+          innerHTML: input.hint
+        }, content); //add  help tip for inputs
+        domConstruct.create("div", {
+          className: "clearBoth"
+        }, content);
+
         var filterLayer = (layer.layerObject) ? layer.layerObject : layer;
         var fields = (layer.layerObject) ? layer.layerObject.fields : layer.fields;
         var params = [];
-        array.forEach(input.parameters, lang.hitch(this, function(param, index) {
+        array.forEach(input.parameters, lang.hitch(this, function (param, index) {
           var paramDef = new Deferred();
-          this._createFilterField(param, filterLayer, fields).then(function(paramResults) {
+          this._createFilterField(param, filterLayer, fields).then(function (paramResults) {
+            var connector = null;
             if (index < input.parameters.length - 1) {
               //insert an AND into the expression
-              paramResults += " <div class='connector'> AND</div> ";
+              if (paramResults.nodeType && paramResults.nodeType !== "undefined") {
+                connector = " <div class='connector'> AND</div> ";
+              } else {
+                paramResults += " <div class='connector'> AND</div> ";
+              }
             }
             domConstruct.place(paramResults, pcontent);
+            if (connector) {
+              domConstruct.place(connector, paramResults.id, "after");
+            }
             paramDef.resolve();
             return paramDef.promise;
           });
           params.push(paramDef);
         }));
-        all(params).then(lang.hitch(this, function() {
-          domConstruct.create("label", {
-            className: "hint",
-            innerHTML: input.hint
-          }, content); //add  help tip for inputs
-          domConstruct.create("div", {
-            className: "clearBoth"
-          }, content);
+        all(params).then(lang.hitch(this, function () {
           deferred.resolve(content);
-        }), function(error) {
+        }), function (error) {
           deferred.resolve(error);
         });
       }));
       return deferred.promise;
-    //return content;
-    //create a label and input for each filter param
+      //return content;
+      //create a label and input for each filter param
     },
-    _createFilterField: function(param, filterLayer, fields) {
+    _createFilterField: function (param, filterLayer, fields) {
 
       var deferred = new Deferred();
       var field = null,
         paramInputs = null;
       param.inputId = filterLayer.id + "." + param.parameterId + ".value";
-
-      array.some(fields, function(f) {
+      array.some(fields, function (f) {
         if (f.name === param.fieldName) {
           field = f;
           return true;
@@ -274,17 +282,15 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
           distinctQuery.returnDistinctValues = true;
 
           var qt = new QueryTask(filterLayer.url);
-          qt.execute(distinctQuery, lang.hitch(this, function(results) {
-            var values = results.features.map(function(f, index) {
+          qt.execute(distinctQuery, lang.hitch(this, function (results) {
+            var values = results.features.map(function (f, index) {
               return {
                 name: f.attributes[field.name],
                 code: f.attributes[field.name]
               };
             });
-
-            var container = this._createDropdownList(param, values);
-            deferred.resolve(container);
-          }), function(error) {
+            deferred.resolve(this._createDropdownList(param, values));
+          }), function (error) {
             deferred.resolve(error);
           });
         } else {
@@ -295,14 +301,14 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
       }
       return deferred.promise;
     },
-    _createDropdownList: function(param, values) {
+    _createDropdownList: function (param, values) {
       var container = domConstruct.create("div", {
         className: "styled-select small"
       });
       var defaultValue = null;
       var selectValues = [];
-      array.forEach(values, function(val, index) {
 
+      array.forEach(values, function (val, index) {
         if (val.code === param.defaultValue) {
           defaultValue = val.name;
         }
@@ -326,7 +332,7 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
       select.startup();
       return select.domNode;
     },
-    _getLayerFields: function(layer) {
+    _getLayerFields: function (layer) {
       var deferred = new Deferred();
       if (layer.layerObject) {
         deferred.resolve(layer);
@@ -338,14 +344,14 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
             "f": "json"
           },
           callbackParamName: "callback"
-        }).then(lang.hitch(this, function(response) {
+        }).then(lang.hitch(this, function (response) {
           layer.fields = response.fields;
           deferred.resolve(layer);
         }));
       }
       return deferred.promise;
     },
-    _buildFilterDialog: function(layers) {
+    _buildFilterDialog: function (layers) {
       //If only one layer has a filter then display it.
       //If multiple layers have a filter create a dropdown then show/hide the filters.
       // Build the filter dialog including explanatory text and add a submit button for each filter group.
@@ -365,13 +371,13 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
 
           var options = select.options;
           options.length = 0;
-          array.forEach(layers, function(val, index) {
+          array.forEach(layers, function (val, index) {
             options[index] = new Option(val.name || val.title, index);
           });
-          on(select, "change", function() {
+          on(select, "change", function () {
             var value = select.value;
             //Show the selected filter
-            dojoQuery(".filter").forEach(lang.hitch(this, function(node) {
+            dojoQuery(".filter").forEach(lang.hitch(this, function (node) {
               if (node.id === "filter_" + value) {
                 domStyle.set(node, "display", "block");
               } else {
@@ -383,7 +389,7 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
         }
       }
 
-      array.forEach(layers, lang.hitch(this, function(layer, index) { //add a list item for each layer and add the filters
+      array.forEach(layers, lang.hitch(this, function (layer, index) { //add a list item for each layer and add the filters
         var filterGroup = domConstruct.create("div", {
           className: "filter",
           id: "filter_" + index
@@ -418,7 +424,7 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
 
 
         var results = this._addFilter(layer);
-        results.then(lang.hitch(this, function(results) {
+        results.then(lang.hitch(this, function (results) {
           domConstruct.place(results, filterGroup);
 
           //add an apply button to the layer filter group
@@ -435,7 +441,7 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
               id: layer.id + "_clear",
               title: "Clear" //i18n.viewer.clear_text
             }, filterGroup);
-            on(clear, "click", lang.hitch(this, function() {
+            on(clear, "click", lang.hitch(this, function () {
               if (layer.layerType && layer.layerType === "ArcGISStreamLayer") {
                 layer.clear();
               } else {
@@ -454,7 +460,7 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
                 id: layer.id + "_zoom",
                 title: "Zoom"
               }, filterGroup);
-              on(zoom, "click", lang.hitch(this, function() {
+              on(zoom, "click", lang.hitch(this, function () {
                 this._zoomFilter(layer);
               }));
             }
@@ -464,7 +470,7 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
             this._applyDefinitionExpression(layer, null);
 
           }
-          on(b, "click", lang.hitch(this, function() {
+          on(b, "click", lang.hitch(this, function () {
             this._startIndicator();
             this._createDefinitionExpression(layer);
 
@@ -475,14 +481,14 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
       return filterContainer;
 
     },
-    _isHosted: function(url) {
+    _isHosted: function (url) {
       var services = "//services";
       var features = "//features";
 
       return (url.indexOf(services) !== -1 || url.indexOf(features) !== -1);
 
     },
-    _zoomFilter: function(layer) {
+    _zoomFilter: function (layer) {
       //only zoom for hosted feature layers
       if (!this._isHosted(layer.layerObject.url)) {
         return;
@@ -494,14 +500,14 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
         q.where = whereClause;
 
         var qt = new QueryTask(layer.layerObject.url);
-        qt.executeForExtent(q, lang.hitch(this, function(result) {
+        qt.executeForExtent(q, lang.hitch(this, function (result) {
           if (result.extent) {
             this.map.setExtent(result.extent, true);
             this._stopIndicator();
           } else if (result.count === 0) {
             this._stopIndicator();
           }
-        }), function(error) {
+        }), function (error) {
           this._stopIndicator();
         });
       }

@@ -1,6 +1,6 @@
 define({
   "map": {
-    "error": "Kan kaart niet maken"
+    "error": "Kaart kan niet gemaakt worden"
   },
   "viewer": {
     "content_title": "Filter",
@@ -8,7 +8,7 @@ define({
     "filterInstructions": "Filter de laag door waarden op te geven.",
     "filterOr": "Minstens één van de volgende expressies moet waar zijn.",
     "filterAnd": "Alle volgende expressies moeten waar zijn.",
-    "filterNo": "Web map does not contain any interactive filters. View the ${link} help topic for details on how to create a filter in your web map.",
+    "filterNo": "Deze webmap bevat geen interactieve filters. Om interactieve filteruitdrukkingen in te schakelen, vinkt u 'Vraag naar waarden' aan in de filterdialoog van de webmap. <br><br> Zie voor meer hulp het $ {link} Help-onderwerp voor meer informatie over hoe u een interactief filteruitdrukking in uw webmap maakt.",
     "filterLink": "http://doc.arcgis.com/en/arcgis-online/use-maps/apply-filters.htm",
     "errors": {
       "message": "Probleem bij het maken van de applicatie van de filter"

@@ -25,6 +25,10 @@ define([], function () {
     "theme": "#666",
     //Enter text here that will display in the title section.
     //If not specified the web map title is used.
+    "bodyBg": "#fff",
+    "bodyColor": "#666",
+    "buttonColor": "#fff",
+    "buttonBg": "#666",
     "title": null,
     //When true the locate button is displayed on the map.
     "locate": true,

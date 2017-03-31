@@ -1,6 +1,6 @@
 define({
   "map": {
-    "error": "Det gick inte att skapa kartan"
+    "error": "Det går inte att skapa kartan"
   },
   "viewer": {
     "content_title": "Filter",
@@ -8,7 +8,7 @@ define({
     "filterInstructions": "Filtrera lagret genom att ange värden.",
     "filterOr": "Ett av följande uttryck måste vara sant.",
     "filterAnd": "Alla de följande uttrycken måste vara sanna.",
-    "filterNo": "Web map does not contain any interactive filters. View the ${link} help topic for details on how to create a filter in your web map.",
+    "filterNo": "Den här webbkartan innehåller inga interaktiva filter. Om du vill aktivera interaktiva filteruttryck, markerar du Fråga efter värden i dialogrutan för webbkartsfilter. <br><br> Om du vill ha mer hjälp visar du hjälpavsnittet ${link}. Där kan du läsa om hur du skapar ett interaktivt filteruttryck i din webbkarta.",
     "filterLink": "http://doc.arcgis.com/en/arcgis-online/use-maps/apply-filters.htm",
     "errors": {
       "message": "Det uppstod ett problem när filterprogrammet skulle skapas"

@@ -8,7 +8,7 @@ define({
     "filterInstructions": "กรองชั้นข้อมูลด้วยการกำหนดค่าเฉพาะ",
     "filterOr": "เงื่อนไขอย่างใดอย่างหนึ่งต้องเป็นจริง",
     "filterAnd": "เงื่อนไขทั้งหมดต้องเป็นจริง",
-    "filterNo": "Web map does not contain any interactive filters. View the ${link} help topic for details on how to create a filter in your web map.",
+    "filterNo": "แผนที่เว็บนี้ไม่ได้มีฟิลเตอร์แบบโต้ตอบใด ๆ เมื่อต้องการเปิดใช้นิพจน์ตัวกรองโต้ตอบ 'การตรวจสอบขอค่า' ในกล่องโต้ตอบตัวกรองแผนที่เว็บ<br><br> สำหรับความช่วยเหลือเพิ่มเติมดู ${link}หัวข้อความช่วยเหลือสำหรับรายละเอียดเกี่ยวกับวิธีการสร้างการแสดงออกกรองโต้ตอบในแผนที่เว็บของคุณ",
     "filterLink": "http://doc.arcgis.com/en/arcgis-online/use-maps/apply-filters.htm",
     "errors": {
       "message": "เกิดปัญหาระหว่างการสร้างแอพพลิเคชันตัวคัดกรอง"

@@ -1,6 +1,6 @@
 define({
   "map": {
-    "error": "Kaardi loomine ebaõnnestus"
+    "error": "Kaarti ei saa luua"
   },
   "viewer": {
     "content_title": "Filter",
@@ -8,7 +8,7 @@ define({
     "filterInstructions": "Filtreeri kihti, määrates väärtused.",
     "filterOr": "Ükskõik milline järgmistest avaldistest peab olema tõene.",
     "filterAnd": "Kõik järgmised avaldised peavad olema tõesed.",
-    "filterNo": "Web map does not contain any interactive filters. View the ${link} help topic for details on how to create a filter in your web map.",
+    "filterNo": "See veebikaart ei sisalda interaktiivseid filtreid. Interaktiivsete filtriavaldiste lubamiseks märkige veebikaardi filtridialoogis ruut 'Küsi väärtusi'. <br><br> Lisateabe saamiseks vaadake abiteemat ${link} selle kohta, kuidas veebikaardil luua interaktiivse filtri avaldist.",
     "filterLink": "http://doc.arcgis.com/en/arcgis-online/use-maps/apply-filters.htm",
     "errors": {
       "message": "Filtrite rakenduse loomisel tekkis tõrge"

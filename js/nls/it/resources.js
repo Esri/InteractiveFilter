@@ -8,7 +8,7 @@ define({
     "filterInstructions": "Filtrare il layer specificando valori.",
     "filterOr": "Una qualsiasi delle seguenti espressioni deve essere vera.",
     "filterAnd": "Tutte le seguenti espressioni devono essere vere.",
-    "filterNo": "Web map does not contain any interactive filters. View the ${link} help topic for details on how to create a filter in your web map.",
+    "filterNo": "Questa mappa Web non contiene filtri interattivi. Per abilitare le espressioni dei filtri interattivi, selezionare 'Richiedi valori' nella finestra di dialogo dei filtri per le mappe Web. <br><br> Per ulteriori informazioni su come creare un'espressione di filtro interattivo nella mappa Web, visualizzare l'argomento della Guida ${link}.",
     "filterLink": "http://doc.arcgis.com/en/arcgis-online/use-maps/apply-filters.htm",
     "errors": {
       "message": "Problema durante la creazione dell'applicazione dei filtri"
