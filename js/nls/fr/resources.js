@@ -14,6 +14,11 @@ define({
       "message": "Un problème est survenu lors de la création de l'application de filtrage"
     }
   },
+  "tools": {
+    "toggle": "Activer/Désactiver le volet",
+    "clear": "Effacer",
+    "zoom": "Zoom"
+  },
   "legend": {
     "title": "Légende"
   }

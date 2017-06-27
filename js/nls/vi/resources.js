@@ -14,6 +14,11 @@ define({
       "message": "Có lỗi khi tạo ứng dụng bộ lọc"
     }
   },
+  "tools": {
+    "toggle": "Bảng thay đổi",
+    "clear": "Xóa",
+    "zoom": "Thu phóng"
+  },
   "legend": {
     "title": "Chú giải"
   }

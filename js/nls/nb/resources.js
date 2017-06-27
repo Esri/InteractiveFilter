@@ -14,6 +14,11 @@ define({
       "message": "Problem med å opprette filterapplikasjonen"
     }
   },
+  "tools": {
+    "toggle": "Aktiver/deaktiver panel",
+    "clear": "Tøm",
+    "zoom": "Zoom"
+  },
   "legend": {
     "title": "Tegnforklaring"
   }

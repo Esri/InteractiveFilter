@@ -14,6 +14,11 @@ define({
       "message": "Problema al crear la aplicación de filtros"
     }
   },
+  "tools": {
+    "toggle": "Activar/desactivar panel",
+    "clear": "Borrar",
+    "zoom": "Zoom"
+  },
   "legend": {
     "title": "Leyenda"
   }

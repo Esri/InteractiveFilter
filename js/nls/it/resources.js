@@ -14,6 +14,11 @@ define({
       "message": "Problema durante la creazione dell'applicazione dei filtri"
     }
   },
+  "tools": {
+    "toggle": "Attiva/disattiva pannello",
+    "clear": "Cancella",
+    "zoom": "Zoom"
+  },
   "legend": {
     "title": "Legenda"
   }

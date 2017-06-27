@@ -14,6 +14,11 @@ define({
       "message": "Problema ao criar o aplicativo dos filtros"
     }
   },
+  "tools": {
+    "toggle": "Alternar painel",
+    "clear": "Apagar",
+    "zoom": "Zoom"
+  },
   "legend": {
     "title": "Legenda"
   }

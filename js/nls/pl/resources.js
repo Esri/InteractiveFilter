@@ -14,6 +14,11 @@ define({
       "message": "Wystąpił problem podczas filtrowania aplikacji"
     }
   },
+  "tools": {
+    "toggle": "Przełącz panel",
+    "clear": "Wyczyść",
+    "zoom": "Zmiana skali"
+  },
   "legend": {
     "title": "Legenda"
   }

@@ -14,6 +14,11 @@ define({
       "message": "Problemă la crearea aplicaţiei de filtrare"
     }
   },
+  "tools": {
+    "toggle": "Panou comutare",
+    "clear": "Golire",
+    "zoom": "Zoom"
+  },
   "legend": {
     "title": "Legendă"
   }

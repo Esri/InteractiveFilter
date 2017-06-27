@@ -14,6 +14,11 @@ define({
       "message": "创建过滤器应用时出现问题"
     }
   },
+  "tools": {
+    "toggle": "切换面板",
+    "clear": "清除",
+    "zoom": "缩放"
+  },
   "legend": {
     "title": "图例"
   }

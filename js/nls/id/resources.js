@@ -14,6 +14,11 @@ define({
       "message": "Ada masalah saat membuat aplikasi filter"
     }
   },
+  "tools": {
+    "toggle": "Tombol panel",
+    "clear": "Bersihkan",
+    "zoom": "Zoom"
+  },
   "legend": {
     "title": "Legenda"
   }

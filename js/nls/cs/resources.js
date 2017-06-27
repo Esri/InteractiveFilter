@@ -14,6 +14,11 @@ define({
       "message": "Při vytváření aplikace filtrů nastal problém."
     }
   },
+  "tools": {
+    "toggle": "Přepnout panel",
+    "clear": "Vymazat",
+    "zoom": "Zvětšení"
+  },
   "legend": {
     "title": "Legenda"
   }

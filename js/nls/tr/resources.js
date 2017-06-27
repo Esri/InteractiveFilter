@@ -14,6 +14,11 @@ define({
       "message": "Filtre uygulaması oluşturmada sorun oluştu"
     }
   },
+  "tools": {
+    "toggle": "Paneli aç/kapat",
+    "clear": "Temizle",
+    "zoom": "Yakınlaştır"
+  },
   "legend": {
     "title": "Açıklama"
   }

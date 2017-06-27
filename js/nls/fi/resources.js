@@ -14,6 +14,11 @@ define({
       "message": "Ongelma luotaessa suodatinsovellusta"
     }
   },
+  "tools": {
+    "toggle": "Näytä tai piilota paneeli",
+    "clear": "Tyhjennä",
+    "zoom": "Tarkennus"
+  },
   "legend": {
     "title": "Selite"
   }

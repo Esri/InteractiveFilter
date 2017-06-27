@@ -14,6 +14,11 @@ define({
       "message": "Beim Erstellen der Filteranwendung ist ein Problem aufgetreten"
     }
   },
+  "tools": {
+    "toggle": "Bereich umschalten",
+    "clear": "Auswahl aufheben",
+    "zoom": "Zoom"
+  },
   "legend": {
     "title": "Legende"
   }

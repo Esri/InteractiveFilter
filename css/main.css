@@ -1,12 +1,27 @@
-@charset "UTF-8";
-.calcite label {
-  margin-bottom: 0 !important; }
+html,
+body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  font-size: 12px;
+  overflow-y: auto;
+}
+
+#mapDiv {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
 
 .panel_content {
-  padding: 4px; }
+  padding: 4px;
+}
 
 .styled-select {
-  padding-top: 5px; }
+  padding-top: 5px;
+}
 
 .styled-select select {
   width: auto;
@@ -14,68 +29,50 @@
   background: transparent;
   padding: 5px;
   height: 34px;
-  font: 12px Arial, Helvetica !important; }
-.styled-select.small select{
-  font-size:12px !important;
-  width:auto;
+}
+
+.styled-select.small select {
+  width: auto;
   max-width: 220px;
 }
-.filter-content {
-  padding: 4px; }
 
-.cancelButton {
-  cursor: pointer;
-  outline: 0;
-  width: 16px;
-  height: 16px;
-  margin-left: 10px;
-  margin-right: 4px;
-  display: inline-block; }
+.dijitInline {
+  display: block;
+}
 
-.cancelButton:hover {
-  opacity: 0.3;
-  filter: alpha(opacity=30); }
+.dijitInputField input {
+  border: none;
+  box-shadow: none;
+}
 
-.zoomButton {
-  cursor: pointer;
-  outline: 0;
-  width: 16px;
-  height: 16px;
-  margin-left: 10px;
-  margin-right: 4px;
-  display: inline-block; }
+.calcite .dijitTextBox .dijitInputField {
+  padding: 0;
+}
 
-.zoomButton:hover {
-  opacity: 0.3;
-  filter: alpha(opacity=30); }
 
 /*Filter panel styles */
+
 legend {
   background: none repeat scroll 0 0 transparent;
   color: #003366;
-  font-size: 1em;
   font-weight: bold;
-  margin: .5em 0;
-  width:100%;
+  width: 100%;
   word-wrap: break-word;
+  margin: 1rem 0;
 }
-
-.instructions {
-  margin: .5em 0;
-  color: #999; }
 
 #container {
   margin: 0 auto;
   padding: 1em;
   text-align: left;
-  position: relative; }
+  position: relative;
+}
 
 .content-pane-left {
-  width: 0px;
+  width: 0;
   max-width: 290px;
   height: 100%;
   padding: 5px;
-  font-size: 1em;
   margin: 0;
   border: 0;
   background: #fff;
@@ -84,98 +81,68 @@ legend {
   -moz-transition: width 250ms ease;
   -ms-transition: width 250ms ease;
   -o-transition: width 250ms ease;
-  transition: width 250ms ease; }
+  transition: width 250ms ease;
+}
 
 @media only screen and (min-width: 760px) {
   .content-pane-left {
-    max-width: 340px; } }
+    max-width: 340px;
+  }
+}
+
+.btn.btn-large.btn-transparent.esri-icon-close,
+.btn.btn-large.btn-transparent.esri-icon-search {
+  line-height: 1.55em;
+  font-size: 16px;
+}
+
+[class^="esri-icon-"],
+[class*=" esri-icon-"] {
+  color: #333;
+}
 
 .connector {
   text-transform: lowercase;
   font-style: italic;
-  padding-left: .5em; }
+  padding: 0.25em;
+  margin: 0;
+}
 
 #container.esriRtl {
-  text-align: right; }
+  text-align: right;
+}
 
 .filter {
-  display: block; }
-
-.row input {
-  width: 250px;
- }
-
-@media only screen and (min-width: 760px) {
-  .row input {
-    max-width: 280px; } }
+  display: block;
+}
 
 .selectedFilter {
-  border: solid 1px #BBFFFF; }
-
-label {
-  width: 100%;
-  padding: 0 0.5em 0.4em 0; }
+  border: solid 1px #BBFFFF;
+}
 
 #container.esriRtl label.hint {
   text-align: right;
-  float: right; }
+  float: right;
+}
 
 .hint {
   font-style: italic;
-  font-size: 9pt;
   width: 100%;
   padding: 0 1em 0.4em 0.5em;
   text-align: left;
   float: left;
-  color: #999; }
-
-#container.esriRtl .row {
-  text-align: right; }
-
-#container.esriLtr .row {
-  text-align: left; }
-
-.row {
-  padding: .4em;
-  width: 100%; }
-
-.clearBoth {
-  width: 100%;
-  height: 1px;
-  margin: 0 0 -1px;
-  clear: both; }
-
-input {
-  border-color: #ccc;
-  border-style: solid;
-  border-width: 1px;
-  color: #333;
-  padding: 1px;
-  width: 150px;
-  padding: 4px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  border-radius: 4px; }
+}
 
 .loader {
   position: absolute;
   top: 50%;
   right: 50%;
   z-index: 100;
-  display: none; }
+  display: none;
+}
 
 .startLoader {
-  display: block; }
-
-.submitButton {
-  border: none;
-  font-size: 100%;
-  padding: 9px;
-  cursor: pointer;
-  width: auto;
-  min-width:150px;
-  text-align: center;
+  display: block;
 }
 
 .top-bar {
@@ -185,46 +152,53 @@ input {
   left: 0;
   width: 100%;
   height: 36px;
-  color: #333; }
+  color: #333;
+}
 
 .esriRTL .top-bar {
   left: auto;
-  right: 0; }
+  right: 0;
+}
 
 .top-bar-title {
   display: none;
-  font-size: 1.2em;
   overflow: hidden;
   margin-left: 40px;
   margin-top: 6px;
   max-width: 50%;
   white-space: nowrap;
-  text-overflow: ellipsis; }
+  text-overflow: ellipsis;
+}
 
 @media only screen and (min-width: 760px) {
   .top-bar-title {
-    display: block; }
-
+    display: block;
   }
+}
 
 .esriRTL .top-bar-title {
   float: right;
-  padding-right: 45px; }
+  padding-right: 45px;
+}
 
 .hamburger-button {
   position: absolute;
-  top: 9px;
-  left: 2px;
-  cursor: pointer; }
+  line-height: 32px;
+  font-size: 22px;
+  font-weight: normal;
+}
+
+.btn-transparent:hover {
+  color: inherit;
+}
 
 .hamburger-button:hover {
   opacity: 0.3;
-  filter: alpha(opacity=30); }
+  filter: alpha(opacity=30);
+}
 
 .esriRTL .hamburger-button {
   position: absolute;
-  top:9px;
-  right:2px;
 }
 
 .border-container-outer {
@@ -233,7 +207,9 @@ input {
   padding: 0;
   margin: 0;
   border: 0;
-  overflow: hidden; }
+  overflow: hidden;
+}
+
 .loading-indicator {
   /* Loading status */
   display: none;
@@ -247,27 +223,31 @@ input {
   background: #fff;
 }
 
-.map-loader-img{
-  display:none;
+.map-loader-img {
+  display: none;
   position: absolute;
   z-index: 1000;
-  top:50%;
-  right:50%;
+  top: 50%;
+  right: 50%;
 }
-.filter-loading{
+
+.filter-loading {
   display: block;
 }
+
 .app-loading .loading-indicator,
-.app-error .loading-indicator{
+.app-error .loading-indicator {
   /* Show this class when loading or error */
   display: block;
 }
+
 .app-loading .loading-indicator {
   /* Loading image */
   background-position: center center;
   background-image: url(../images/ajax-loader.gif);
   background-repeat: no-repeat;
 }
+
 .app-error .loading-message {
   /* Error status */
   background-position: top center;
@@ -281,40 +261,30 @@ input {
   left: 0;
   text-align: center;
 }
+
 .app-loading .content-pane-left {
-  width: 0; }
+  width: 0;
+}
 
 .drawer-open .content-pane-left {
   width: 300px;
   overflow: auto;
   overflow-x: hidden;
-  padding: 5px;
-  border-right: 1px solid #ddd; }
+  border-right: 1px solid #ddd;
+}
 
 .esriRTL .drawer-open .content-pane-left {
   border-right: 0;
-  border-left: 1px solid #ddd; }
+  border-left: 1px solid #ddd;
+}
 
 .content-pane-center {
   width: 100%;
   height: 100%;
   padding: 0;
   margin: 0;
-  border: 0; }
-
-html, body {
-  padding: 0;
-  margin: 0;
-  height: 100%;
-  width: 100%;
-  font-family: Arial,Helvetica,sans-serif;
-  color: #545454; }
-
-#mapDiv {
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  height: 100%; }
+  border: 0;
+}
 
 #legendContainer {
   overflow: visible;
@@ -322,15 +292,19 @@ html, body {
   top: 40px;
   right: 10px;
   width: 244px;
-  height: 100%;
+  height: auto;
   display: block;
-  z-index: 2; }
+  z-index: 2;
+}
 
 #legendContainer.hide {
-  height: 0; }
+  height: 0;
+}
 
-.legend-header.hide, .legend-content.hide {
-  display: none; }
+.legend-header.hide,
+.legend-content.hide {
+  display: none;
+}
 
 .legend-header {
   background-color: #fff;
@@ -338,8 +312,9 @@ html, body {
   border-bottom: none;
   position: relative;
   width: 100%;
-  height: 20px;
-  display: block; }
+  height: 32px;
+  display: block;
+}
 
 .legend-content {
   position: relative;
@@ -352,195 +327,189 @@ html, body {
   max-height: 60%;
   overflow-y: auto;
   border-radius: 4px;
-  display: block;
   margin: auto;
   background-color: #FFF;
   border: 1px solid #DDD;
   border-top: none;
-  border-radius: 4px; }
+}
 
 .legend-item {
-  padding: .5em; }
+  padding: .5em;
+}
+
+#legendDiv table,
+#legendDiv table th,
+#legendDiv table td,
+#legendDiv table tr {
+  border: none
+}
+
+#legendDiv table {
+  margin-bottom: 0;
+}
 
 #submenu.hide {
-  display: none; }
+  display: none;
+}
+
+.submitButton {
+  font-size: 14px;
+}
+
+.btn-white {
+  border: 1px solid transparent;
+}
 
 .mini-submenu {
   position: absolute;
-  top: 0;
-  right: 5px;
+  top: 40px;
+  right: 2px;
   display: block;
-  background-color: transparent;
-  border: 1px solid rgba(0, 0, 0, 0.9);
-  border-radius: 4px;
-  padding: 9px;
-  z-index: 1; }
-
-.mini-submenu:hover {
-  cursor: pointer; }
-
-.mini-submenu {
-  background-color: #fff; }
+  z-index: 1;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  color: #4c4c4c;
+  font-size: 18px;
+  background-color: #fff;
+  -moz-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  -webkit-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  border-width: 0;
+  border-style: none;
+  text-align: center;
+  cursor: pointer;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+}
 
 .noscroll {
-  overflow: hidden; }
+  overflow: hidden;
+}
 
 #close-submenu {
   position: absolute;
   top: 4px;
   right: 6px;
   display: inline-block;
-  cursor: pointer; }
+  font-size: 16px;
+  cursor: pointer;
+}
 
 .hidden {
-  display: none; }
+  display: none;
+}
 
-.calcite label {
-  margin-bottom: 0 !important; }
+label {
+  position: relative;
+  display: block;
+  margin: 0 0 1rem 0;
+}
 
 .panel_content {
-  padding: 4px; }
+  padding: 4px;
+}
 
-.esriSimpleSlider {
+.calcite .esriSimpleSlider {
   display: none;
   top: 55px;
-  left: 4px; }
+  left: 4px;
+}
 
 @media only screen and (min-width: 850px) {
-  .esriSimpleSlider {
-    display: block; } }
+  .calcite .esriSimpleSlider {
+    display: block;
+  }
+}
 
 #search {
   float: right;
-  width: auto;
-  padding-right: 2px;
-}
-.esriRTL #search{
-  float:left;
+  padding-top: 2px;
+  padding-bottom: 1px;
+  padding-right: 5px;
+  line-height: 36px;
 }
 
-#search .searchInput {
-  width: 120px; }
-
-@media only screen and (min-width: 450px) {
-  #search .searchInput {
-    width: 160px; } }
+.esriRTL #search {
+  float: left;
+}
 
 .drawer-open #search {
   /*Hide geocoder for small screen sizes when drawer is open*/
-  display: none; }
-
+  display: none;
+}
 
 @media only screen and (min-width: 450px) {
   .drawer-open #search {
-    display: block; } }
+    display: block;
+  }
+}
 
 .filter-content {
-  padding: 4px; }
+  padding: 4px;
+}
 
 .open-drawer {
   /*Hide geocoder for small screen sizes when drawer is open*/
-  display: none; }
+  display: none;
+}
 
 @media only screen and (min-width: 450px) {
   .open-drawer {
-    display: block; } }
+    display: block;
+  }
+}
+
 
 /* Esri Javascript API*/
-.esriPopup .pointer.bottom, .esriPopup .pointer.bottomLeft, .esriPopup .pointer.bottomRight {
-  background: #f7f7f7 !important; }
 
-.esriPopup.light .actionsPane .action.zoomTo {
-  background-position: 0 -224px; }
-
-.esriPopup .actionsPane .action {
-  margin-right: 10px; }
-
-.esriPopup.light .actionsPane .action {
-  position: absolute;
-  cursor: pointer;
-  background-image: url("../images/popup-sprite.png");
-  width: 12px;
-  height: 12px;
-  bottom: 4px;
-  text-indent: -9999px; }
+.calcite .esriPopup .contentPane {
+  padding: 0 15px;
+}
 
 #locateDiv {
   position: absolute;
   top: 55px;
   left: 4px;
-  z-index: 50; }
+  z-index: 50;
+}
 
 @media only screen and (min-width: 850px) {
   #locateDiv {
-    top: 130px; } }
-
-.no-locate #homeDiv{
-  top:55px;
+    top: 130px;
+  }
 }
+
+.no-locate #homeDiv {
+  top: 55px;
+}
+
 #homeDiv {
   position: absolute;
   top: 100px;
   left: 4px;
-  z-index: 50; }
+  z-index: 50;
+}
 
 @media only screen and (min-width: 850px) {
   #homeDiv {
-    top: 175px; }
-  .no-locate #homeDiv{
-    top:130px;
+    top: 175px;
   }
+  .no-locate #homeDiv {
+    top: 130px;
   }
+}
 
 .simpleGeocoder .esriGeocoderResults {
-  color: #333; }
+  color: #333;
+}
 
 .simpleGeocoder .esriGeocoderResult {
-  color: #333; }
-
-@font-face {
-  font-family: 'simple';
-  src: url("../font/simple.eot?5pojjj");
-  src: url("../font/simple.eot?5pojjj#iefix") format("embedded-opentype"), url("../font/simple.woff?5pojjj") format("woff"), url("../font/simple.ttf?5pojjj") format("truetype"), url("../font/simple.svg?5pojjj#simple") format("svg");
-  font-weight: normal;
-  font-style: normal; }
-
-[class^="icon-"]:before, [class*=" icon-"]:before {
-  font-family: "simple";
-  font-style: normal;
-  font-weight: normal;
-  speak: none;
-  display: inline-block;
-  text-decoration: inherit;
-  width: 1em;
-  margin-right: .2em;
-  text-align: center;
-  /* opacity: .8; */
-  /* For safety - reset parent styles, that can break glyph codes*/
-  font-variant: normal;
-  text-transform: none;
-  /* fix buttons height, for twitter bootstrap */
-  line-height: 1em;
-  /* Animation center compensation - margins should be symmetric */
-  /* remove if not needed */
-  margin-left: .2em; }
-
-.icon-LayerList:before {
-  content: "\e633"; }
-
-.icon-search:before {
-  content: '\e800'; }
-
-/* '' */
-.icon-cancel:before {
-  content: '\e801'; }
-
-/* '' */
-.icon-menu:before {
-  content: '\e802'; }
-
-/* '' */
-.icon-buffer:before {
-  content: '\e809'; }
-
-/* '' */
+  color: #333;
+}

@@ -14,6 +14,11 @@ define({
       "message": "Probleem bij het maken van de applicatie van de filter"
     }
   },
+  "tools": {
+    "toggle": "Paneel wisselen",
+    "clear": "Annuleren",
+    "zoom": "Zoom"
+  },
   "legend": {
     "title": "Legenda"
   }

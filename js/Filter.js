@@ -55,7 +55,7 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
         }
       }
     },
-    _init: function () { },
+    _init: function () {},
     createFilterContent: function () {
       var deferred = new Deferred();
       this._filterLayers();
@@ -202,22 +202,17 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
     },
     _addFilter: function (layer) {
       var deferred = new Deferred();
-      var content = domConstruct.create("div");
+      var content = domConstruct.create("form");
       array.forEach(layer.definitionEditor.inputs, lang.hitch(this, function (input) {
-        domConstruct.create("label", {
+        var pcontent = domConstruct.create("label", {
+          className: "text-off-black",
           innerHTML: input.prompt
         }, content); //add prompt text to panel
-        var pcontent = domConstruct.create("div", {
-          className: "row"
-        }, content);
 
         domConstruct.create("label", {
-          className: "hint",
+          className: "text-darker-gray",
           innerHTML: input.hint
         }, content); //add  help tip for inputs
-        domConstruct.create("div", {
-          className: "clearBoth"
-        }, content);
 
         var filterLayer = (layer.layerObject) ? layer.layerObject : layer;
         var fields = (layer.layerObject) ? layer.layerObject.fields : layer.fields;
@@ -229,9 +224,9 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
             if (index < input.parameters.length - 1) {
               //insert an AND into the expression
               if (paramResults.nodeType && paramResults.nodeType !== "undefined") {
-                connector = " <div class='connector'> AND</div> ";
+                connector = " <label class='connector text-off-black'> AND </label> ";
               } else {
-                paramResults += " <div class='connector'> AND</div> ";
+                paramResults += " <label class='connector text-off-black'> AND </label> ";
               }
             }
             domConstruct.place(paramResults, pcontent);
@@ -269,7 +264,7 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
         paramInputs = this._createDropdownList(param, field.domain.codedValues);
         deferred.resolve(paramInputs);
       } else if (field && field.type === "esriFieldTypeInteger") { //the pattern forces the numeric keyboard on iOS. The numeric type works on webkit browsers only
-        paramInputs = lang.replace("<input class='param_inputs'  type='number'  id='{inputId}' pattern='[0-9]*'  value='{defaultValue}' />", param);
+        paramInputs = lang.replace("<input class='param_inputs text-off-black'  type='number'  id='{inputId}' pattern='[0-9]*'  value='{defaultValue}' />", param);
         deferred.resolve(paramInputs);
       } else { //string
         var capabilities = filterLayer.advancedQueryCapabilities;
@@ -291,7 +286,7 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
             });
             deferred.resolve(this._createDropdownList(param, values));
           }), function (error) {
-            deferred.resolve(error);
+            deferred.resolve(new Error(error));
           });
         } else {
           // string
@@ -326,10 +321,12 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
       var select = new FilteringSelect({
         id: param.inputId,
         store: dataStore,
+        className: "modifier-class",
         value: defaultValue
       }, container);
 
       select.startup();
+
       return select.domNode;
     },
     _getLayerFields: function (layer) {
@@ -360,6 +357,7 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
         className: i18n.isRightToLeft ? "esriRtl" : "esriLtr",
         innerHTML: this.filterInstructions || i18n.viewer.filterInstructions
       });
+
       if (this.filterDropdown) {
         if (layers.length && layers.length > 1) {
           var selectContainer = domConstruct.create("div", {
@@ -401,11 +399,13 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
 
         if (this.filterDropdown === false) {
           domConstruct.create("legend", {
-            innerHTML: "<span>" + layer.title + "</span>"
+            className: "font-size-2",
+            innerHTML: layer.title
           }, filterGroup);
         } else if (this.filterDropdown && layers.length === 1) {
           domConstruct.create("legend", {
-            innerHTML: "<span>" + layer.title + "</span>"
+            className: "font-size-2",
+            innerHTML: layer.title
           }, filterGroup);
         }
         //add friendly text that explains the query - first get parameter inputs then update the expression
@@ -418,7 +418,7 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
         }
 
         domConstruct.create("div", {
-          className: "instructions",
+          className: "text-darker-gray",
           innerHTML: infoText
         }, filterGroup);
 
@@ -428,20 +428,22 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
           domConstruct.place(results, filterGroup);
 
           //add an apply button to the layer filter group
-          var b = domConstruct.create("input", {
-            type: "button",
-            className: "submitButton bg fc",
+          var b = domConstruct.create("button", {
+            type: "submit",
+            className: "submitButton btn btn-large btn-white",
             id: layer.id + "_apply",
-            value: this.button_text || i18n.viewer.button_text
+            innerHTML: this.button_text || i18n.viewer.button_text
           }, filterGroup, "last");
 
           if (this.displayClear) {
-            var clear = domConstruct.create("span", {
-              className: "cancelButton icon-cancel",
+
+            var clear = domConstruct.create("button", {
+              className: "btn btn-large btn-transparent esri-icon-close",
               id: layer.id + "_clear",
-              title: "Clear" //i18n.viewer.clear_text
+              title: i18n.tools.clear
             }, filterGroup);
             on(clear, "click", lang.hitch(this, function () {
+              console.log("Clear Click");
               if (layer.layerType && layer.layerType === "ArcGISStreamLayer") {
                 layer.clear();
               } else {
@@ -455,12 +457,13 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
           //only valid for hosted feature layers.
           if (this.displayZoom) {
             if (layer.layerObject && layer.layerObject.type && layer.layerObject.type === "Feature Layer" && layer.layerObject.url && this._isHosted(layer.layerObject.url)) {
-              var zoom = domConstruct.create("span", {
-                className: "zoomButton icon-search",
+              var zoom = domConstruct.create("button", {
+                className: "btn btn-large btn-transparent esri-icon-search",
                 id: layer.id + "_zoom",
-                title: "Zoom"
+                title: i18n.tools.zoom
               }, filterGroup);
               on(zoom, "click", lang.hitch(this, function () {
+                console.log("Zoom Click");
                 this._zoomFilter(layer);
               }));
             }

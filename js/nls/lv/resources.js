@@ -14,6 +14,11 @@ define({
       "message": "Problēma izveidojot filtra aplikāciju"
     }
   },
+  "tools": {
+    "toggle": "Pārslēgt paneli",
+    "clear": "Notīrīt",
+    "zoom": "Mērogmaiņa"
+  },
   "legend": {
     "title": "Apzīmējumi"
   }

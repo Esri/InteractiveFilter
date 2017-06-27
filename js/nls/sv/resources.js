@@ -14,6 +14,11 @@ define({
       "message": "Det uppstod ett problem när filterprogrammet skulle skapas"
     }
   },
+  "tools": {
+    "toggle": "Slå på/av panel",
+    "clear": "Radera",
+    "zoom": "Zooma"
+  },
   "legend": {
     "title": "Teckenförklaring"
   }

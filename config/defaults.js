@@ -28,7 +28,7 @@ define([], function () {
     "bodyBg": "#fff",
     "bodyColor": "#666",
     "buttonColor": "#fff",
-    "buttonBg": "#666",
+    "buttonBg": "#757575",
     "title": null,
     //When true the locate button is displayed on the map.
     "locate": true,

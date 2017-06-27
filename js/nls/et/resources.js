@@ -14,6 +14,11 @@ define({
       "message": "Filtrite rakenduse loomisel tekkis tõrge"
     }
   },
+  "tools": {
+    "toggle": "Lülita paneel sisse/välja",
+    "clear": "Tühjenda",
+    "zoom": "Suumi"
+  },
   "legend": {
     "title": "Legendiga kaart"
   }

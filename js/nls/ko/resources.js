@@ -14,6 +14,11 @@ define({
       "message": "필터 응용프로그램을 생성하는 중 문제가 발생했습니다."
     }
   },
+  "tools": {
+    "toggle": "패널 전환",
+    "clear": "선택 해제",
+    "zoom": "확대"
+  },
   "legend": {
     "title": "범례"
   }

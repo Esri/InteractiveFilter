@@ -14,6 +14,11 @@ define({
       "message": "建立篩選應用程式時出現問題"
     }
   },
+  "tools": {
+    "toggle": "切換面板",
+    "clear": "清除",
+    "zoom": "縮放"
+  },
   "legend": {
     "title": "圖例"
   }

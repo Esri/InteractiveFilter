@@ -15,6 +15,11 @@ define({
         message: "Problem creating the filters application"
       }
     },
+    tools: {
+      toggle: "Toggle panel",
+      clear: "Clear",
+      zoom: "Zoom"
+    },
     legend: {
       title: "Legend"
     }

@@ -14,6 +14,11 @@ define({
       "message": "Problem pri stvaranju aplikacije filtra"
     }
   },
+  "tools": {
+    "toggle": "Preklopi ploču",
+    "clear": "Očisti",
+    "zoom": "Povećaj"
+  },
   "legend": {
     "title": "Legenda"
   }

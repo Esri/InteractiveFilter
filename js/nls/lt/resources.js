@@ -14,6 +14,11 @@ define({
       "message": "Nepavyko sukurti filtrų aplikacijos"
     }
   },
+  "tools": {
+    "toggle": "Perjungti skydelį",
+    "clear": "Valyti",
+    "zoom": "Artinti"
+  },
   "legend": {
     "title": "Legenda"
   }

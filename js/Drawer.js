@@ -1,5 +1,5 @@
-define(["dojo/Evented", "dojo/_base/declare", "dojo/_base/lang", "dijit/_WidgetBase", "dojo/on", "dojo/dom", "dojo/dom-class", "dijit/layout/BorderContainer", "dijit/layout/ContentPane", "dojo/Deferred", "dojo/window"], function (
-Evented, declare, lang, _WidgetBase, on, dom, domClass, BorderContainer, ContentPane, Deferred, win) {
+define(["dojo/Evented", "dojo/_base/declare", "dojo/dom-attr", "dojo/_base/lang", "dijit/_WidgetBase", "dojo/on", "dojo/dom", "dojo/dom-class", "dijit/layout/BorderContainer", "dijit/layout/ContentPane", "dojo/Deferred", "dojo/window", "dojo/i18n!application/nls/resources"], function (
+    Evented, declare, domAttr, lang, _WidgetBase, on, dom, domClass, BorderContainer, ContentPane, Deferred, win, nlsResources) {
     var Widget = declare("application.Drawer", [_WidgetBase, Evented], {
         options: {
             showDrawerSize: 850,
@@ -12,6 +12,7 @@ Evented, declare, lang, _WidgetBase, on, dom, domClass, BorderContainer, Content
         },
         // lifecycle: 1
         constructor: function (options) {
+
             // mix in settings and defaults
             var defaults = lang.mixin({}, this.options, options);
             // properties
@@ -22,6 +23,7 @@ Evented, declare, lang, _WidgetBase, on, dom, domClass, BorderContainer, Content
             this.set("toggleButton", defaults.toggleButton);
             this.set("mapResizeTimeout", defaults.mapResizeTimeout);
             this.set("mapResizeStepTimeout", defaults.mapResizeStepTimeout);
+
             // classes
             this.css = {
                 toggleButton: "toggle-grey",
@@ -139,6 +141,9 @@ Evented, declare, lang, _WidgetBase, on, dom, domClass, BorderContainer, Content
             this._contentPaneCenterNode = dom.byId(this.get("contentPaneCenter"));
             this._contentPaneSideNode = dom.byId(this.get("contentPaneSide"));
             this._toggleNode = dom.byId(this.get("toggleButton"));
+
+            // this._toggleNode["aria-label"] = nlsResources.tools.toggle;
+            domAttr.set(this._toggleNode, "aria-label", nlsResources.tools.toggle);
             // all nodes present
             if (this._borderContainerNode && this._contentPaneCenterNode && this._contentPaneSideNode && this._toggleNode) {
                 // outer container

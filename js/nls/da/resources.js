@@ -14,6 +14,11 @@ define({
       "message": "Problem med at oprette filterapplikationen"
     }
   },
+  "tools": {
+    "toggle": "Skift panel",
+    "clear": "Ryd",
+    "zoom": "Zoom"
+  },
   "legend": {
     "title": "Signaturforklaring"
   }
