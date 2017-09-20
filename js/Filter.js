@@ -473,10 +473,14 @@ define(["dojo/_base/declare", "dojo/_base/array", "dojo/_base/lang", "dojo/_base
             this._applyDefinitionExpression(layer, null);
 
           }
+          on(results, "submit",lang.hitch(this, function(event) {
+            event.preventDefault();
+            this._startIndicator();
+            this._createDefinitionExpression(layer);
+          }));
           on(b, "click", lang.hitch(this, function () {
             this._startIndicator();
             this._createDefinitionExpression(layer);
-
           }));
         }));
       }));

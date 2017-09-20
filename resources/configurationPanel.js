@@ -2,18 +2,20 @@
 	"configurationSettings": [{
 		"category": "General",
 		"fields": [{
-			"type": "webmap",
-			"label": "Select a map"
-		}, 
-		{
-			"placeHolder": "Defaults to map title",
-			"label": "Application title",
-			"fieldName": "title",
-			"type": "string",
-			"tooltip": "Defaults to map title"
-		}, {
-			"type": "appproxies"
-		}]
+				"type": "webmap",
+				"label": "Select a map",
+				"conditions": ["filter"]
+			},
+			{
+				"placeHolder": "Defaults to map title",
+				"label": "Application title",
+				"fieldName": "title",
+				"type": "string",
+				"tooltip": "Defaults to map title"
+			}, {
+				"type": "appproxies"
+			}
+		]
 	}, {
 		"category": "Theme",
 		"fields": [{
@@ -166,8 +168,7 @@
 			"fieldName": "searchConfig",
 			"label": "Configure search tool"
 		}]
-	}
-	],
+	}],
 	"values": {
 		"home": true,
 		"locate": true,
