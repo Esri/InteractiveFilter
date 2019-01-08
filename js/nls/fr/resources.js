@@ -1,6 +1,10 @@
 define({
   "map": {
-    "error": "Impossible de créer la carte"
+    "error": "Impossible de créer la carte",
+    "licenseError": {
+      "message": "La licence de votre compte ne permet pas d’utiliser des applications configurables non publiques. Demandez à l’administrateur de votre organisation de vous attribuer un type d’utilisateur qui inclut une licence Essential Apps ou une licence Essential Apps additionnelle.",
+      "title": "Pas de licence"
+    }
   },
   "viewer": {
     "content_title": "Filtre",
@@ -11,7 +15,7 @@ define({
     "filterNo": "Cette carte web ne contient aucun filtre interactif. Pour activer les expressions de filtres interactifs, activez à la case à cocher 'Demander des valeurs' dans la boîte de dialogue de filtre de carte web. <br><br> Pour en savoir plus, consultez la rubrique d’aide ${link} pour des détails sur la création d’une expression de filtre interactif dans votre carte web.",
     "filterLink": "http://doc.arcgis.com/en/arcgis-online/use-maps/apply-filters.htm",
     "errors": {
-      "message": "Un problème est survenu lors de la création de l'application de filtrage"
+      "message": "Un problème est survenu lors de la création de l’application de filtrage"
     }
   },
   "tools": {

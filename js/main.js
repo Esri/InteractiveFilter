@@ -1,30 +1,22 @@
 define([
   "dojo/ready",
   "dojo/_base/declare",
-  "dojo/dom",
-  "dojo/_base/Color",
+
   "dojo/query",
-  "dojo/dom-style",
   "dojo/_base/lang",
   "dojo/_base/kernel",
-  "dojo/_base/array",
   "dojo/dom-construct",
   "dijit/registry",
-  "dojo/has",
-  "dojo/sniff",
   "esri/arcgis/utils",
   "esri/lang",
   "dojo/on",
   "application/Drawer",
   "application/Filter",
   "dojo/dom-class",
-  "esri/tasks/query",
-  "esri/tasks/QueryTask",
-  "esri/layers/FeatureLayer",
   "esri/dijit/LocateButton",
   "esri/dijit/HomeButton"
 ], function (
-  ready, declare, dom, Color, query, domStyle, lang, kernel, array, domConstruct, registry, has, sniff, arcgisUtils, esriLang, on, Drawer, Filter, domClass, esriQuery, QueryTask, FeatureLayer, LocateButton, HomeButton) {
+  ready, declare, query, lang, kernel, domConstruct, registry, arcgisUtils, esriLang, on, Drawer, Filter, domClass, LocateButton, HomeButton) {
   return declare("", null, {
     config: {},
     theme: null,
@@ -91,7 +83,7 @@ define([
       // for localization. If you don't need to support multiple languages you can hardcode the
       // strings here and comment out the call in index.html to get the localization strings.
       // set message
-      var node = dom.byId("loading_message");
+      var node = document.getElementById("loading_message");
       if (node) {
         if (this.config && this.config.i18n) {
           node.innerHTML = this.config.i18n.map.error + ": " + error.message;
@@ -158,7 +150,7 @@ define([
 
         }));
       } else {
-        domClass.add(dom.byId("toggle_button"), "nosearch");
+        domClass.add(document.getElementById("toggle_button"), "nosearch");
       }
 
       //Add the location button if enabled
@@ -199,18 +191,18 @@ define([
             // depending on config options.
             if (this.config.legendOpen) {
               query(".legend").removeClass("hide");
-              domClass.add(dom.byId("cp_center"), "noscroll");
+              domClass.add(document.getElementById("cp_center"), "noscroll");
             } else {
               //closed when loading
-              domClass.remove(dom.byId("submenu"), "hide");
+              domClass.remove(document.getElementById("submenu"), "hide");
             }
 
-            var menuBtn = dom.byId("submenu");
-            var legendNode = dom.byId("legend");
+            var menuBtn = document.getElementById("submenu");
+            var legendNode = document.getElementById("legend");
 
-            on(dom.byId("close-submenu"), "click", function () {
+            on(document.getElementById("close-submenu"), "click", function () {
               //prevent scroll
-              domClass.remove(dom.byId("cp_center"), "noscroll");
+              domClass.remove(document.getElementById("cp_center"), "noscroll");
 
               domClass.remove(menuBtn, "hide");
               query(".legend").addClass("hide");
@@ -222,9 +214,9 @@ define([
                 })
               ]).play();
             });
-            on(dom.byId("submenu"), "click", function () {
+            on(document.getElementById("submenu"), "click", function () {
               //prevent scroll
-              domClass.add(dom.byId("cp_center"), "noscroll");
+              domClass.add(document.getElementById("cp_center"), "noscroll");
               domClass.add(menuBtn, "hide");
               query(".legend").removeClass("hide");
               coreFx.combine([
@@ -261,7 +253,7 @@ define([
         domClass.add(this.map.infoWindow.domNode, "light");
         //define the application title
         var title = this.config.title || response.itemInfo.item.title;
-        dom.byId("title").innerHTML = title;
+        document.getElementById("title").innerHTML = title;
         document.title = title;
 
         // make sure map is loaded
